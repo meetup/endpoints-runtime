@@ -1,6 +1,8 @@
 CI_BUILD_NUMBER ?= $(USER)-snapshot
 
-PUBLISH_TAG = "meetup/endpoints-runtime:1-$(CI_BUILD_NUMBER)"
+VERSION = 1-0.0.$(CI_BUILD_NUMBER)
+
+PUBLISH_TAG = "meetup/endpoints-runtime:$(VERSION)"
 
 DATE = $(shell date +%Y-%m-%dT%H_%M_%S)
 
@@ -15,3 +17,6 @@ package: ## Create docker image.
 
 publish: package ## Create docker image and push to registry.
 	docker push $(PUBLISH_TAG)
+
+version:
+	@echo $(VERSION)
