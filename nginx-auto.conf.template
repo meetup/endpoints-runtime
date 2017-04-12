@@ -70,6 +70,10 @@ http {
 
     access_log ${access_log} timed_combined;
 
+    if ($http_user_agent ~ GoogleHC) {
+      return 200;
+    }
+
 % if healthz:
     location = /${healthz} {
       return 200;
